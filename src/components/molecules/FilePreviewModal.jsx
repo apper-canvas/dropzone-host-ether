@@ -2,7 +2,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import ApperIcon from "@/components/ApperIcon";
 import Button from "@/components/atoms/Button";
 import React from "react";
-import toast from "react-hot-toast";
+import { toast } from 'react-toastify';
 const FilePreviewModal = ({ file, isOpen, onClose }) => {
   if (!isOpen || !file) return null
 
