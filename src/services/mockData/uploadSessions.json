@@ -1,0 +1,18 @@
+[
+  {
+    "Id": 1,
+    "totalFiles": 5,
+    "completedFiles": 5,
+    "totalSize": 25165824,
+    "uploadedSize": 25165824,
+    "startTime": "2024-01-15T10:00:00Z"
+  },
+  {
+    "Id": 2,
+    "totalFiles": 3,
+    "completedFiles": 2,
+    "totalSize": 12582912,
+    "uploadedSize": 8388608,
+    "startTime": "2024-01-15T14:30:00Z"
+  }
+]
