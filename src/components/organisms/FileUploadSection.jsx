@@ -22,8 +22,8 @@ const FileUploadSection = () => {
   const loadFiles = async () => {
     setLoading(true)
     try {
-      const existingFiles = await fileUploadService.getAll()
-      setFiles(existingFiles)
+const existingFiles = await fileUploadService.getAll()
+      setFiles(existingFiles || [])
     } catch (error) {
       toast.error('Failed to load existing files')
       console.error('Load files error:', error)
@@ -37,7 +37,7 @@ const FileUploadSection = () => {
     
     for (const file of selectedFiles) {
       try {
-        const fileData = {
+const fileData = {
           name: file.name,
           size: file.size,
           type: file.type
@@ -64,7 +64,7 @@ const FileUploadSection = () => {
     setUploadingCount(prev => prev + 1)
     
     try {
-      await fileUploadService.simulateUpload(fileId, (progress) => {
+await fileUploadService.simulateUpload(fileId, (progress) => {
         setFiles(prev => prev.map(file => 
           file.Id === fileId 
             ? { ...file, progress, status: progress >= 100 ? 'completed' : 'uploading' }
@@ -78,7 +78,7 @@ const FileUploadSection = () => {
         file.Id === fileId ? updatedFile : file
       ))
       
-      toast.success(`${updatedFile.name} uploaded successfully!`)
+toast.success(`${updatedFile.Name} uploaded successfully!`)
     } catch (error) {
       setFiles(prev => prev.map(file => 
         file.Id === fileId 

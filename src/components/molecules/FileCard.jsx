@@ -42,10 +42,10 @@ const FileCard = ({
     }
   }
 
-  const copyShareUrl = async () => {
-    if (file.shareUrl) {
+const copyShareUrl = async () => {
+    if (file.share_url || file.shareUrl) {
       try {
-        await navigator.clipboard.writeText(file.shareUrl)
+await navigator.clipboard.writeText(file.share_url || file.shareUrl)
         toast.success('Share link copied to clipboard!')
       } catch (err) {
         toast.error('Failed to copy link')
@@ -54,7 +54,7 @@ const FileCard = ({
   }
 
   const handlePreview = () => {
-    if (file.type.startsWith('image/') && (file.thumbnailUrl || file.shareUrl)) {
+if (file.type.startsWith('image/') && (file.thumbnail_url || file.thumbnailUrl || file.share_url || file.shareUrl)) {
       onPreview?.(file)
     }
   }
@@ -70,10 +70,10 @@ const FileCard = ({
       <div className="flex items-start space-x-4">
         {/* File Icon/Thumbnail */}
         <div className="flex-shrink-0">
-          {file.thumbnailUrl ? (
+{(file.thumbnail_url || file.thumbnailUrl) ? (
             <motion.img
-              src={file.thumbnailUrl}
-              alt={file.name}
+src={file.thumbnail_url || file.thumbnailUrl}
+              alt={file.Name || file.name}
               className="w-12 h-12 rounded-lg object-cover cursor-pointer"
               whileHover={{ scale: 1.05 }}
               onClick={handlePreview}
@@ -88,8 +88,8 @@ const FileCard = ({
         {/* File Info */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-2">
-            <h4 className="text-white font-medium truncate pr-2" title={file.name}>
-              {file.name}
+<h4 className="text-white font-medium truncate pr-2" title={file.Name || file.name}>
+              {file.Name || file.name}
             </h4>
             <div className={`flex items-center space-x-1 ${getStatusColor(file.status)}`}>
               <ApperIcon name={getStatusIcon(file.status)} className="w-4 h-4" />
@@ -164,7 +164,7 @@ const FileCard = ({
               )}
             </div>
 
-            {file.status === 'completed' && file.shareUrl && (
+{file.status === 'completed' && (file.share_url || file.shareUrl) && (
               <Button
                 size="sm"
                 variant="primary"
